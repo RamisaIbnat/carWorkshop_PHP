@@ -23,32 +23,62 @@ if (!$con)   /*  check if the connection was actually successful  */
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
+    <style>
+
+    body{
+        background-color:aliceblue;
+    }
+    .clientInfo{
+        margin-top: 20%;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        background-color: white;
+        /* height:50%;
+        width:70%; */
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    </style>
 </head>
 <body>
-    
-<table >
+<div id="clientInfo"><h3>Client Information: </h3>
+    <table >
 
-<tr>
-  <th> User Name</th>
-  <th> Phone Number </th>
-  <th> Car registration Number </th>
-  <th> Appointment Date </th>
-  <th> Mechanic Name </th>
-  </tr> 
+        <tr>
+        <th> User Name</th>
+        <th> Phone Number </th>
+        <th> Car registration Number </th>
+        <th> Appointment Date </th>
+        <th> Mechanic Name </th>
+        </tr> 
 
-   <?php 
-    $q = "SELECT * from client";
-    $r = mysqli_query($con,$q);
-    while($row = mysqli_fetch_array($r)){
-        echo "<tr>";
-        echo "<td>". $row['name']."</td>";
-        echo "<td>". $row['phone']."</td>";
-        echo "<td>". $row['license']."</td>";
-        echo "<td>". $row['date']."</td>";
-        echo "<td>".$row['mechanic']."</td>";
-        echo "</tr>";
-    }
+        <?php 
+            $q = "SELECT * from client";
+            $r = mysqli_query($con,$q);
+            while($row = mysqli_fetch_array($r)){
+                echo "<tr>";
+                echo "<td>". $row['name']."</td>";
+                echo "<td>". $row['phone']."</td>";
+                echo "<td>". $row['license']."</td>";
+                echo "<td>". $row['date']."</td>";
+                echo "<td>".$row['mechanic']."</td>";
+                echo "</tr>";
+            }
    
-   ?>
-  </table>
+        ?>
+    </table>
+</div>
 </html>
