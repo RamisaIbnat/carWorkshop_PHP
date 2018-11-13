@@ -32,6 +32,10 @@ if (!$con)   /*  check if the connection was actually successful  */
         margin-top: 20%;
     }
 
+    .UpdateInfo{
+        padding-bottom:10%;
+    }
+
     table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
@@ -58,6 +62,7 @@ if (!$con)   /*  check if the connection was actually successful  */
     <table >
 
         <tr>
+        <th> Sl</th>
         <th> User Name</th>
         <th> Phone Number </th>
         <th> Car registration Number </th>
@@ -70,12 +75,65 @@ if (!$con)   /*  check if the connection was actually successful  */
             $r = mysqli_query($con,$q);
             while($row = mysqli_fetch_array($r)){
                 echo "<tr>";
+                echo "<td>". $row['Sl']."</td>";
                 echo "<td>". $row['name']."</td>";
                 echo "<td>". $row['phone']."</td>";
                 echo "<td>". $row['license']."</td>";
                 echo "<td>". $row['date']."</td>";
                 echo "<td>".$row['mechanic']."</td>";
                 echo "</tr>";
+            }
+        ?>
+        <div id=UpdateInfo>
+        <form name="updateList">To Update information: 
+        <span>Client id <input type="number" placeholder="insert Client id " id="clientID"></span>
+        <span>Appointment date <input type="date" placeholder="insert appointment date " id="DateID"></span>
+        <span>Mechanic </span>
+            <select name="mechanic">
+                <option value="Riven">Riven Potter</option>
+                <option value="Mike">Mike Weasley</option>
+                <option value="Jamie">Jamie Gordon</option>
+                <option value="Ahri">Ahri Granger</option>
+            </select> <br>
+        <input type="Submit" name="Click to update!"/><br><br>
+        <?php 
+            if (isset($_POST["submit"])){
+
+                $Sl = mysqli_real_escape_string($con, $_POST['Sl']);
+                $date = mysqli_real_escape_string($con, $_POST['date']);
+                $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
+                
+                $query="UPDATE client (date, mechanic) WHERE Sl=$sl";
+                    mysql_select_db('client');
+                    $retval = mysql_query( $query, $con);
+
+            //         $res = mysqli_query($con,$sql);
+            //         header("CarWorkshop_PHP/carWorkshop.php");
+
+            //         if (!mysqli_query($con, $sql)){
+            //             die('Error: ' . mysqli_connect_error($con));
+            //         }
+            // 
+            }
+            else{
+                // echo "I'm not here";
+            }
+            ?>
+            
+        </form>
+        </div>
+
+            <!-- $date = mysqli_real_escape_string($con, $_POST['date']);
+            $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
+            
+            $query = mysql_query("UPDATE client ". "SET date = $date ". "SET mechanic = $mechanic ". "WHERE Sl=$Sl", $con);
+            mysql_select_db('client');
+            $retval = mysql_query( $query, $conn );
+
+            $query = mysql_query("select * from client", $con);
+            while ($row = mysql_fetch_array($query)) {
+            echo "<b><a href='updatephp.php?update={$row['date']}'>{$row['mechanic']}</a></b>";
+            echo "<br />"; -->
             }
    
         ?>
