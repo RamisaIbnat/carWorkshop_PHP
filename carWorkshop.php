@@ -23,7 +23,7 @@
                 ('$name','$address', '$phone','$email', '$license',' $date', '$engine', '$mechanic')";
 
                 $res = mysqli_query($con,$sql);
-                header("Car/carWorkshop.php");
+                header("CarWorkshop_PHP/carWorkshop.php");
 
                 if (!mysqli_query($con, $sql)){
                     die('Error: ' . mysqli_connect_error($con));
