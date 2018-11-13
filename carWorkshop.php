@@ -159,7 +159,6 @@
                         <option value="Jamie">Jamie Gordon</option>
                         <option value="Ahri">Ahri Granger</option>
                     </select>
-                    <!-- </datalist> -->
                 <center><input type="submit" name="submit"/></center>
             </form>
             </div>
