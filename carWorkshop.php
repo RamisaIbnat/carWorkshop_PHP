@@ -150,9 +150,6 @@
                 <div class="userInput"><label class="user_label">Car engine no. : </label> <input type="text" name="engine" class="user_inputText" required/></div>
                 <div class="userInput"><label class="user_label">Appointment date : </label> <input type="date" name="date" class="user_inputText" required/></div>
                 <div class="userInput"><label class="user_label">Desired mechanic : </label>
-                <!-- <input list="mechanic">
-                    <datalist id="mechanic"> -->
-
                     <select name="mechanic">
                         <option value="Riven">Riven Potter</option>
                         <option value="Mike">Mike Weasley</option>
