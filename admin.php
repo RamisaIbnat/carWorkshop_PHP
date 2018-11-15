@@ -95,7 +95,7 @@ if (!$con)   /*  check if the connection was actually successful  */
                 <option value="Jamie">Jamie Gordon</option>
                 <option value="Ahri">Ahri Granger</option>
             </select> <br>
-        <input type="Submit" name="Click to update!"/><br><br>
+        <input type="Submit" name="Click to update!" action="admin.php"/><br><br>
         <?php 
             if (isset($_POST["submit"])){
 
@@ -116,7 +116,7 @@ if (!$con)   /*  check if the connection was actually successful  */
             // 
             }
             else{
-                // echo "I'm not here";
+                echo "I'm not here";
             }
             ?>
             
