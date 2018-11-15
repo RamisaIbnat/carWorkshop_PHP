@@ -9,8 +9,40 @@ if (!$con)   /*  check if the connection was actually successful  */
            
     }
     else{
-      "Hello";
-      
+    }
+
+if (isset($_POST["update"])){
+
+    // echo "I'm inside Update condition";
+
+    $Sl = mysqli_real_escape_string($con, $_POST['Sl']);
+    $date = mysqli_real_escape_string($con, $_POST['date']);
+    $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
+
+    // echo "parameter set";
+
+    $query="UPDATE client SET date = '$date', mechanic = '$mechanic' WHERE Sl = '$Sl'";
+    $retval = mysqli_query($con, $query);
+
+
+    header("CarWorkshop_PHP/admin.php");
+
+    if(!$retval ) {
+        die('Could not update data: ' . mysql_error());
+        }
+        else{
+        echo "Updated data successfully\n";
+        }
+        // mysqli_close($con);
+    //         $res = mysqli_query($con,$sql);
+    //         header("CarWorkshop_PHP/carWorkshop.php");
+
+    //         if (!mysqli_query($con, $sql)){
+    //             die('Error: ' . mysqli_connect_error($con));
+    //         }
+    // 
+} else{
+        echo "I'm not in Update connection";
     }
 ?>
 
@@ -25,35 +57,35 @@ if (!$con)   /*  check if the connection was actually successful  */
     <script src="main.js"></script>
     <style>
 
-    body{
-        background-color:aliceblue;
-    }
-    .clientInfo{
-        margin-top: 20%;
-    }
+        body{
+            background-color:aliceblue;
+        }
+        .clientInfo{
+            margin-top: 20%;
+        }
 
-    .UpdateInfo{
-        padding-bottom:10%;
-    }
+        .UpdateInfo{
+            padding-bottom:10%;
+        }
 
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        background-color: white;
-        /* height:50%;
-        width:70%; */
-    }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            /* height:50%;
+            width:70%; */
+        }
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
 
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
 
     </style>
 </head>
@@ -85,9 +117,9 @@ if (!$con)   /*  check if the connection was actually successful  */
             }
         ?>
         <div id=UpdateInfo>
-        <form name="updateList">To Update information: 
-        <span>Client id <input type="number" placeholder="insert Client id " id="clientID"></span>
-        <span>Appointment date <input type="date" placeholder="insert appointment date " id="DateID"></span>
+        <form name="updateList" action="admin.php" method="post">To Update information: 
+        <span>Client id <input type="number" name="Sl" placeholder="insert Client id " id="clientID"></span>
+        <span>Appointment date <input type="date" name="date" placeholder="insert appointment date " id="DateID"></span>
         <span>Mechanic </span>
             <select name="mechanic">
                 <option value="Riven">Riven Potter</option>
@@ -95,30 +127,41 @@ if (!$con)   /*  check if the connection was actually successful  */
                 <option value="Jamie">Jamie Gordon</option>
                 <option value="Ahri">Ahri Granger</option>
             </select> <br>
-        <input type="Submit" name="Click to update!" action="admin.php"/><br><br>
-        <?php 
-            if (isset($_POST["submit"])){
+        <input type="Submit" name="update" value="Update information"/><br><br>
 
-                $Sl = mysqli_real_escape_string($con, $_POST['Sl']);
-                $date = mysqli_real_escape_string($con, $_POST['date']);
-                $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
+        <!-- //     if (isset($_POST["update"])){
+
+        //         echo "I'm inside Update condition";
+        //         $Sl = mysqli_real_escape_string($con, $_POST['Sl']);
+        //         $date = mysqli_real_escape_string($con, $_POST['date']);
+        //         $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
+
+        //         echo $Sl, $date, $mechanic;
                 
-                $query="UPDATE client (date, mechanic) WHERE Sl=$sl";
-                    mysql_select_db('client');
-                    $retval = mysql_query( $query, $con);
+        //         $query="UPDATE client ". "SET date = $date ". "SET mechanic = $mechanic".
+        //         "WHERE Sl = $Sl";
+        //         mysql_select_db('carworkshop');
+        //         $retval = mysqli_query($con, $query);
 
-            //         $res = mysqli_query($con,$sql);
-            //         header("CarWorkshop_PHP/carWorkshop.php");
+        //         if(! $retval ) {
+        //             die('Could not update data: ' . mysql_error());
+        //          }
+        //          echo "Updated data successfully\n";
+                 
+        //          mysql_close($conn);
 
-            //         if (!mysqli_query($con, $sql)){
-            //             die('Error: ' . mysqli_connect_error($con));
-            //         }
-            // 
-            }
-            else{
-                echo "I'm not here";
-            }
-            ?>
+        //     //         $res = mysqli_query($con,$sql);
+        //     //         header("CarWorkshop_PHP/carWorkshop.php");
+
+        //     //         if (!mysqli_query($con, $sql)){
+        //     //             die('Error: ' . mysqli_connect_error($con));
+        //     //         }
+        //     // 
+        //     }
+        //     else{
+        //         echo "I'm not in Update connection";
+        //     }
+        //     ?> -->
             
         </form>
         </div>
@@ -134,9 +177,6 @@ if (!$con)   /*  check if the connection was actually successful  */
             while ($row = mysql_fetch_array($query)) {
             echo "<b><a href='updatephp.php?update={$row['date']}'>{$row['mechanic']}</a></b>";
             echo "<br />"; -->
-            }
-   
-        ?>
     </table>
 </div>
 </html>
