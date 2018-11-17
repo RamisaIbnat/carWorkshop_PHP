@@ -151,17 +151,21 @@
                 <div class="userInput"><label class="user_label">Appointment date : </label> <input type="date" name="date" class="user_inputText" required/></div>
                 <div class="userInput"><label class="user_label">Desired mechanic : </label>
                     <select name="mechanic">
-                        <option value="Riven">Riven Potter</option>
-                        <option value="Mike">Mike Weasley</option>
-                        <option value="Jamie">Jamie Gordon</option>
-                        <option value="Ahri">Ahri Granger</option>
+                        <option value="Riven" id="mech1">Riven Potter</option>
+                        <option value="Mike" id="mech2">Mike Weasley</option>
+                        <option value="Jamie" id="mech3">Jamie Gordon</option>
+                        <option value="Ahri" id="mech4">Ahri Granger</option>
+                        <option value="Akali" id="mech5">Akali Black</option>
                     </select>
                 <center><input type="submit" name="submit"/></center>
             </form>
             </div>
             </div>
             <script>
-                
+
+
+
+     
             </script>
     </body>
 </html>
