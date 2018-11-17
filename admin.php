@@ -15,15 +15,22 @@ if (isset($_POST["update"])){
 
     // echo "I'm inside Update condition";
 
+
     $Sl = mysqli_real_escape_string($con, $_POST['Sl']);
+
+    if(!empty($_POST['date'])){
     $date = mysqli_real_escape_string($con, $_POST['date']);
+    $query1="UPDATE client SET date = '$date' WHERE Sl = '$Sl'";
+    $retval = mysqli_query($con, $query1);
+    }
+
+    if(!empty($_POST['mechanic'])){
     $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
+    $query1="UPDATE client SET mechanic = '$mechanic' WHERE Sl = '$Sl'";
+    $retval = mysqli_query($con, $query1);
+    }
 
     // echo "parameter set";
-
-    $query="UPDATE client SET date = '$date', mechanic = '$mechanic' WHERE Sl = '$Sl'";
-    $retval = mysqli_query($con, $query);
-
 
     header("CarWorkshop_PHP/admin.php");
 
@@ -121,11 +128,13 @@ if (isset($_POST["update"])){
         <span>Client id <input type="number" name="Sl" placeholder="insert Client id " id="clientID"></span>
         <span>Appointment date <input type="date" name="date" placeholder="insert appointment date " id="DateID"></span>
         <span>Mechanic </span>
-            <select name="mechanic">
+            <select name="mechanic" placeholder="Select mechanc">
+            <option value="" disabled selected hidden>Please Choose...</option>
                 <option value="Riven">Riven Potter</option>
                 <option value="Mike">Mike Weasley</option>
                 <option value="Jamie">Jamie Gordon</option>
                 <option value="Ahri">Ahri Granger</option>
+                <option value="Akali" id="mech5">Akali Black</option>
             </select> <br>
         <input type="Submit" name="update" value="Update information"/><br><br>
 

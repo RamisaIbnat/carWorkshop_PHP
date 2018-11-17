@@ -7,6 +7,10 @@
     }
     else{
         // echo "connected";
+
+        $sqlMech="INSERT INTO mechanics (Name) VALUES (Riven Potter)";
+        $res1 = mysqli_query($con,$sqlMech);
+
         if (isset($_POST["submit"])){
 
             $name = mysqli_real_escape_string($con, $_POST['name']);
@@ -150,7 +154,8 @@
                 <div class="userInput"><label class="user_label">Car engine no. : </label> <input type="text" name="engine" class="user_inputText" required/></div>
                 <div class="userInput"><label class="user_label">Appointment date : </label> <input type="date" name="date" class="user_inputText" required/></div>
                 <div class="userInput"><label class="user_label">Desired mechanic : </label>
-                    <select name="mechanic">
+                    <select name="mechanic" placeholder="Select Mechanic">
+                        <option value="" disabled selected hidden>Please Choose...</option>
                         <option value="Riven" id="mech1">Riven Potter</option>
                         <option value="Mike" id="mech2">Mike Weasley</option>
                         <option value="Jamie" id="mech3">Jamie Gordon</option>
