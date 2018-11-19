@@ -1,5 +1,6 @@
 <?php
-    include "db_login.php"; 
+    include_once "db_login.php"; 
+
     if (!$con)   /*  check if the connection was actually successful  */
     {
         exit("Could not connect to the database: <br/>" . 
@@ -8,8 +9,7 @@
     else{
         // echo "connected";
 
-        $sqlMech="INSERT INTO mechanics (Name) VALUES (Riven Potter)";
-        $res1 = mysqli_query($con,$sqlMech);
+        
 
         if (isset($_POST["submit"])){
 
@@ -21,6 +21,9 @@
             $date = mysqli_real_escape_string($con, $_POST['date']);
             $engine = mysqli_real_escape_string($con, $_POST['engine']);
             $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
+
+            $sqlMech="UPDATE mechanics SET Appointments = 'Appointments'+1 WHERE Name = '$mechanic'";
+            $res1 = mysqli_query($con,$sqlMech);
             
             $sql="INSERT INTO client (name, address, phone, email, license, date, engine, mechanic)
                 VALUES

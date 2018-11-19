@@ -26,9 +26,16 @@ if (isset($_POST["update"])){
 
     if(!empty($_POST['mechanic'])){
     $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
+
+    $prevMech = "SELECT mechanic from client WHERE Sl=$Sl";
+    $sqlMech="UPDATE mechanics SET Appointments = 'Appointments'-1 WHERE Name = '$prevMech'";
+    $res1 = mysqli_query($con,$sqlMech);
+
     $query1="UPDATE client SET mechanic = '$mechanic' WHERE Sl = '$Sl'";
     $retval = mysqli_query($con, $query1);
-    }
+
+    $sqlMech="UPDATE mechanics SET Appointments = 'Appointments'+1 WHERE Name = '$mechanic'";
+    $res1 = mysqli_query($con,$sqlMech);}
 
     // echo "parameter set";
 
