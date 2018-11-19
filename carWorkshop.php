@@ -9,8 +9,6 @@
     else{
         // echo "connected";
 
-        
-
         if (isset($_POST["submit"])){
 
             $name = mysqli_real_escape_string($con, $_POST['name']);
@@ -22,19 +20,19 @@
             $engine = mysqli_real_escape_string($con, $_POST['engine']);
             $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
 
-            $sqlMech="UPDATE mechanics SET Appointments = 'Appointments'+1 WHERE Name = '$mechanic'";
-            $res1 = mysqli_query($con,$sqlMech);
+            // $sqlMech="UPDATE mechanics SET Appointments = 'Appointments'+1 WHERE Name = '$mechanic'";
+            // $res1 = mysqli_query($con,$sqlMech);
             
             $sql="INSERT INTO client (name, address, phone, email, license, date, engine, mechanic)
                 VALUES
                 ('$name','$address', '$phone','$email', '$license',' $date', '$engine', '$mechanic')";
 
-                $res = mysqli_query($con,$sql);
-                header("CarWorkshop_PHP/carWorkshop.php");
+            $res = mysqli_query($con,$sql);
+            header("CarWorkshop_PHP/carWorkshop.php");
 
-                if (!mysqli_query($con, $sql)){
-                    die('Error: ' . mysqli_connect_error($con));
-                }
+            if (!mysqli_query($con, $sql)){
+                die('Error: ' . mysqli_connect_error($con));
+            }
         }
         else{
             // echo "I'm not here";
