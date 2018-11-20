@@ -26,12 +26,12 @@
             $sql="INSERT INTO client (name, address, phone, email, license, date, engine, mechanic)
                 VALUES
                 ('$name','$address', '$phone','$email', '$license',' $date', '$engine', '$mechanic')";
-
-            $res = mysqli_query($con,$sql);
-            header("CarWorkshop_PHP/carWorkshop.php");
-
+                
             if (!mysqli_query($con, $sql)){
                 die('Error: ' . mysqli_connect_error($con));
+            }
+            else{
+                header("CarWorkshop_PHP/carWorkshop.php");
             }
         }
         else{

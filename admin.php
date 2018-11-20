@@ -5,37 +5,39 @@ include "db_login.php";
 if (!$con)   /*  check if the connection was actually successful  */
     {
         exit("Could not connect to the database: <br/>" . 
-            htmlspecialchars(mysql_error()) );
-           
+            htmlspecialchars(mysql_error()) );      
     }
     else{
     }
 
 if (isset($_POST["update"])){
 
-    // echo "I'm inside Update condition";
-
-
     $Sl = mysqli_real_escape_string($con, $_POST['Sl']);
 
     if(!empty($_POST['date'])){
-    $date = mysqli_real_escape_string($con, $_POST['date']);
-    $query1="UPDATE client SET date = '$date' WHERE Sl = '$Sl'";
-    $retval = mysqli_query($con, $query1);
+        $date = mysqli_real_escape_string($con, $_POST['date']);
+        $query1="UPDATE client SET date = '$date' WHERE Sl = '$Sl'";
+        $retval = mysqli_query($con, $query1);
     }
 
     if(!empty($_POST['mechanic'])){
-    $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
+        $mechanic = mysqli_real_escape_string($con, $_POST['mechanic']);
 
-    $prevMech = "SELECT mechanic from client WHERE Sl=$Sl";
-    $sqlMech="UPDATE mechanics SET Appointments = 'Appointments'-1 WHERE Name = '$prevMech'";
-    $res1 = mysqli_query($con,$sqlMech);
+        $prevMech = "SELECT mechanic from client WHERE Sl=$Sl";
+        $queryPrevMech = mysqli_query($con, $prevMech);
 
-    $query1="UPDATE client SET mechanic = '$mechanic' WHERE Sl = '$Sl'";
-    $retval = mysqli_query($con, $query1);
+        
+        $row = mysqli_fetch_array($queryPrevMech);
+        echo $row['mechanic'];
+        $sqlMech="UPDATE mechanics SET Appointments = 'Appointments'-1 WHERE Name = '$prevMech'";
+        $res1 = mysqli_query($con,$sqlMech);
 
-    $sqlMech="UPDATE mechanics SET Appointments = 'Appointments'+1 WHERE Name = '$mechanic'";
-    $res1 = mysqli_query($con,$sqlMech);}
+        $query1="UPDATE client SET mechanic = '$mechanic' WHERE Sl = '$Sl'";
+        $retval = mysqli_query($con, $query1);
+
+        $sqlMech="UPDATE mechanics SET Appointments = 'Appointments'+1 WHERE Name = '$mechanic'";
+        $res1 = mysqli_query($con,$sqlMech);
+    }
 
     // echo "parameter set";
 
