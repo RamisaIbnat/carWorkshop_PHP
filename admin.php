@@ -26,9 +26,9 @@ if (isset($_POST["update"])){
         $prevMech = "SELECT mechanic from client WHERE Sl=$Sl";
         $queryPrevMech = mysqli_query($con, $prevMech);
 
-        
         $row = mysqli_fetch_array($queryPrevMech);
         echo $row['mechanic'];
+        
         $sqlMech="UPDATE mechanics SET Appointments = 'Appointments'-1 WHERE Name = '$prevMech'";
         $res1 = mysqli_query($con,$sqlMech);
 

@@ -34,12 +34,12 @@
                 header("CarWorkshop_PHP/carWorkshop.php");
             }
 
-            $mechQuery = "SELECT mechanic, count(Sl) as c FROM client WHERE date='$date', c<5 GROUP BY mechanic";
-            $mechQuery1 = mysqli_query($con,$mechQuery);
-            $row = mysqli_fetch_array($mechQuery1);
-            echo $row[c], $row['mechanic'];
-        }
-        else{
+        //     $mechQuery = "SELECT mechanic, count(Sl) as c FROM client WHERE date='$date', c<5 GROUP BY mechanic";
+        //     $mechQuery1 = mysqli_query($con,$mechQuery);
+        //     $row = mysqli_fetch_array($mechQuery1);
+        //     echo $row[c], $row['mechanic'];
+        // }
+        // else{
             // echo "I'm not here";
         }
     }
