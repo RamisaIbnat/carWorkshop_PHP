@@ -26,13 +26,18 @@
             $sql="INSERT INTO client (name, address, phone, email, license, date, engine, mechanic)
                 VALUES
                 ('$name','$address', '$phone','$email', '$license',' $date', '$engine', '$mechanic')";
-                
+
             if (!mysqli_query($con, $sql)){
                 die('Error: ' . mysqli_connect_error($con));
             }
             else{
                 header("CarWorkshop_PHP/carWorkshop.php");
             }
+
+            $mechQuery = "SELECT mechanic, count(Sl) as c FROM client WHERE date='$date', c<5 GROUP BY mechanic";
+            $mechQuery1 = mysqli_query($con,$mechQuery);
+            $row = mysqli_fetch_array($mechQuery1);
+            echo $row[c], $row['mechanic'];
         }
         else{
             // echo "I'm not here";
